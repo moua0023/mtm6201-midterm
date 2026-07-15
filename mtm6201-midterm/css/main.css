@@ -1,0 +1,737 @@
+/* ==========================================================================
+   1. CSS VARIABLES, FONTS & THEMING
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@400;700&family=Lato:wght@700;900&display=swap');
+
+:root {
+  /* Colors from Figma Spec */
+  --clr-white: #ffffff;
+  --clr-black: #000000;
+  --clr-gold-light: #d69e3d;
+  --clr-gold-dark: #966f2c;
+  --clr-bg-page: #f3f0e9; /* Light cream background */
+  
+  /* Fonts */
+  --font-heading: 'Lato', sans-serif;
+  --font-body: 'Karla', sans-serif;
+  
+  /* Layout Constraints & Animations */
+  --max-width: 1200px;
+  --transition-speed: 0.3s;
+}
+
+/* ==========================================================================
+   2. BASE STYLES & ACCESSIBILITY
+   ========================================================================== */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--clr-bg-page);
+  color: var(--clr-black);
+  font-family: var(--font-body);
+  margin: 0;
+  padding: 0;
+}
+
+/* Base Headings & Paragraph Scales (Mobile-First) */
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+h1 { font-size: 2rem; }
+h2 { font-size: 1.75rem; }
+h3 { font-size: 1.375rem; }
+
+p {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* Image Core Normalization */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Layout Wrapper */
+.wrapper {
+  width: 90%;
+  max-width: var(--max-width);
+  margin-inline: auto;
+}
+
+/* Shared Design Tokens & Helpers */
+.sub-heading {
+  display: block;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: var(--clr-gold-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 0.5rem;
+}
+
+.sub-heading.central {
+  text-align: center;
+}
+
+.sub-heading.white {
+  color: var(--clr-gold-light);
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 3.5rem;
+  text-transform: uppercase;
+}
+
+/* Accessibility Keyboard Skip Link */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background: var(--clr-gold-dark);
+  color: var(--clr-white);
+  padding: 1rem;
+  z-index: 1000;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* ==========================================================================
+   3. GLOBAL COMPONENT: BUTTONS
+   ========================================================================== */
+.btn {
+  display: inline-block;
+  padding: 0.95rem 2.2rem;
+  font-family: var(--font-body);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  font-size: 0.875rem;
+  border-radius: 0;
+  text-align: center;
+  border: 2px solid transparent;
+  transition: background-color var(--transition-speed) ease, 
+              color var(--transition-speed) ease,
+              border-color var(--transition-speed) ease;
+}
+
+/* Button Variants from Figma Design Specs */
+.btn-primary {
+  background-color: var(--clr-white);
+  color: var(--clr-black);
+}
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: var(--clr-gold-dark);
+  color: var(--clr-white);
+}
+
+.btn-secondary {
+  background-color: var(--clr-white);
+  color: var(--clr-black);
+}
+.btn-secondary:hover,
+.btn-secondary:focus {
+  background-color: var(--clr-gold-dark);
+  color: var(--clr-white);
+}
+
+.btn-dark {
+  background-color: var(--clr-black);
+  color: var(--clr-white);
+}
+.btn-dark:hover,
+.btn-dark:focus {
+  background-color: var(--clr-gold-dark);
+  color: var(--clr-white);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--clr-white);
+  border: 2px solid var(--clr-white);
+}
+.btn-outline:hover,
+.btn-outline:focus {
+  background-color: var(--clr-white);
+  color: var(--clr-black);
+  border-color: var(--clr-white);
+}
+
+/* ==========================================================================
+   4. NAVIGATION & HEADER
+   ========================================================================== */
+.main-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  padding: 1.5rem 0;
+}
+
+.header-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo-img {
+  height: 35px;
+  filter: brightness(0) invert(1); /* Forces branding logo vector to white */
+}
+
+.main-nav ul {
+  display: flex;
+  gap: 1.5rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.nav-link {
+  color: var(--clr-white);
+  text-decoration: none;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  transition: color var(--transition-speed) ease;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+  color: var(--clr-gold-light);
+}
+/* ==========================================================================
+   5. HERO SECTION & BACKGROUND
+   ========================================================================== */
+.hero-section {
+  position: relative;
+  height: 100vh;
+  min-height: 500px;
+  overflow: hidden;
+  color: var(--clr-white);
+  
+  /* Fallback color, background setup, and image path */
+  background-color: var(--clr-black);
+  background-image: url('../images/hero-background.jpg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+/* Responsive Image Swap using Media Queries (replaces srcset) */
+@media screen and (min-width: 768px) {
+  .hero-section {
+    background-image: url('../images/hero-background.jpg');
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .hero-section {
+    background-image: url('../images/hero-background.jpg');
+  }
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Creates a dark overlay protection barrier */
+  background: rgba(0, 0, 0, 0.45); 
+  z-index: 2;
+  display: flex;
+  align-items: center;
+}
+
+.hero-content {
+  text-align: center;
+  animation: fadeInUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  width: 100%; /* Ensures layout centers properly */
+}
+
+.hero-content h1 {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 2rem;
+  text-transform: uppercase;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.hero-content p {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 680px;
+  margin: 0 auto 2rem auto;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* ==========================================================================
+   6. WELCOME / TASTE COFFEE GALLERY SECTION
+   ========================================================================== */
+.welcome-section {
+  padding: 4rem 0;
+}
+
+.welcome-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.welcome-text {
+  text-align: center;
+}
+
+.welcome-text h2 {
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+  margin-top: 0.5rem;
+  line-height: 1.25;
+}
+
+.welcome-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.gallery-hero img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.gallery-grid-items {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.gallery-grid-items img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+/* ==========================================================================
+   7. FEATURES SECTION ("WHY VISIT US?")
+   ========================================================================== */
+.features-section {
+  padding: 5rem 0;
+}
+
+.features-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.feature-card {
+  text-align: center;
+  max-width: 340px;
+  margin-inline: auto;
+}
+
+.feature-icon {
+  width: 90px;
+  height: 90px;
+  margin: 0 auto 1.5rem auto;
+}
+
+.feature-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.feature-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.02em;
+}
+
+.feature-card p {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+/* ==========================================================================
+   8. PROMO SPLIT BANNERS (MENU & LOCATIONS)
+   ========================================================================== */
+.promo-banners {
+  position: relative;
+  width: 100%;
+}
+
+.promo-grid {
+  display: flex;
+  flex-direction: column;
+}
+
+.promo-card {
+  height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--clr-white);
+  padding: 2.5rem 1.5rem;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.promo-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 1;
+}
+
+.promo-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 480px;
+}
+
+.promo-inner h2 {
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+.explore-banner {
+  background-image: url('../images/coffee-shop.jpeg');
+}
+
+.locations-banner {
+  background-image: url('../images/coffee-shop.jpeg');
+}
+
+/* ==========================================================================
+   9. ABOUT STORY SECTION
+   ========================================================================== */
+.story-section {
+  padding: 5rem 0;
+}
+
+.story-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.story-image img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.story-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.story-text h2 {
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+  margin-top: 0.5rem;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+}
+
+.story-text p {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(0, 0, 0, 0.85);
+}
+
+/* Complex Selector Example: Spacings on sibling paragraphs dynamically */
+.story-text p + p {
+  margin-top: 1.25rem;
+}
+
+.story-text p:last-of-type {
+  margin-bottom: 2rem;
+}
+
+.story-text .btn {
+  align-self: flex-start;
+}
+
+/* ==========================================================================
+   10. CUSTOMER TESTIMONIALS & FOOTER
+   ========================================================================== */
+.testimonials-section {
+  background-color: var(--clr-black);
+  color: var(--clr-white);
+  padding: 5rem 0 6rem 0;
+}
+
+.testimonial-title {
+  color: var(--clr-gold-light);
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.testimonials-section h2 {
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+  margin-top: 0.5rem;
+  margin-bottom: 4rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.testimonials-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.testimonial-card {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 380px;
+}
+
+.testimonial-img-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.testimonial-img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Image shading filter to maximize font contrasts */
+.testimonial-img-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.75) 100%);
+  z-index: 1;
+}
+
+.testimonial-overlay-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 2rem 1.5rem;
+  z-index: 2;
+  text-align: left;
+}
+
+.quote-text {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  color: var(--clr-white);
+}
+
+.quote-author {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: var(--clr-gold-light);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: block;
+}
+
+/* Complex Selector Example: Target specific elements dynamically within the list */
+.testimonials-grid .testimonial-card:nth-child(2) .quote-author {
+  color: var(--clr-gold-light);
+}
+
+/* Footer Section */
+.main-footer {
+  background-color: var(--clr-black);
+  color: rgba(255, 255, 255, 0.6);
+  padding: 3rem 0;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+}
+
+/* ==========================================================================
+   11. MEDIA QUERIES (TABLET BREAKPOINT - MIN-WIDTH: 768px)
+   ========================================================================== */
+@media screen and (min-width: 768px) {
+  /* Typography Scale Adaptation */
+  h1 { font-size: 3rem; }
+  h2 { font-size: 2.375rem; }
+  h3 { font-size: 1.75rem; }
+
+  .hero-content h1 {
+    font-size: 3rem;
+  }
+
+  .welcome-text h2,
+  .section-title,
+  .story-text h2,
+  .testimonials-section h2 {
+    font-size: 2.375rem;
+  }
+
+  /* Header structure alignment shifts to side-by-side row */
+  .header-container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .logo-img {
+    height: 40px;
+  }
+
+  /* Welcome Gallery turns to horizontal flow */
+  .welcome-gallery {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .gallery-hero {
+    flex: 1.1;
+  }
+
+  .gallery-hero img {
+    height: 100%;
+    aspect-ratio: auto;
+  }
+
+  .gallery-grid-items {
+    flex: 1;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Features layout shifts to horizontal grids */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  /* Testimonials columns layout grid updates */
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .testimonial-card {
+    max-width: 100%;
+  }
+}
+
+/* ==========================================================================
+   12. MEDIA QUERIES (DESKTOP BREAKPOINT - MIN-WIDTH: 1024px)
+   ========================================================================== */
+@media screen and (min-width: 1024px) {
+  /* Desktop Typographical scales */
+  h1 { font-size: 3.875rem; }
+  h2 { font-size: 3rem; }
+  h3 { font-size: 2rem; }
+
+  .hero-content h1 {
+    font-size: 3.875rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .welcome-text h2,
+  .section-title,
+  .story-text h2,
+  .testimonials-section h2 {
+    font-size: 3rem;
+  }
+
+  /* Grid splits for main layouts */
+  .welcome-grid {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .welcome-text {
+    text-align: left;
+  }
+
+  .welcome-gallery {
+    gap: 1.5rem;
+  }
+
+  .gallery-grid-items {
+    gap: 1.5rem;
+  }
+
+  /* Split Promo Banner Row */
+  .promo-grid {
+    flex-direction: row;
+  }
+
+  .promo-card {
+    flex: 1;
+    height: 480px;
+  }
+
+  /* Narrative split layout row styling */
+  .story-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  /* Multi-column Testimonial grid setup */
+  .testimonials-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+  }
+}
